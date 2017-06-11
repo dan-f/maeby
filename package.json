@@ -1,5 +1,5 @@
 {
-  "name": "mb",
+  "name": "maeby",
   "version": "0.1.0",
   "description": "The maybe monad in JS",
   "main": "lib/index.js",

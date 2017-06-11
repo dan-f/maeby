@@ -10,20 +10,32 @@ export class Just<T> {
     this.value = value
   }
 
-  bind<U> (transform: (value: T) => Maybe<U>): Maybe<U> {
+  bind<U> (transform: (value: T) => (Maybe<U> | U)): Maybe<U> {
     return bind(this, transform)
+  }
+
+  js (): ?T {
+    return js(this)
   }
 }
 
 export class Nothing {
-  bind<T, U> (transform: (value: T) => Maybe<U>): Maybe<U> {
+  bind<T, U> (transform: (value: T) => (Maybe<U> | U)): Maybe<U> {
     return bind(this, transform)
+  }
+
+  js (): any {
+    return js(this)
   }
 }
 
-export function bind<T, U> (instance: Maybe<T>, transform: (value: T) => Maybe<U>): Maybe<U> {
+export function bind<T, U> (instance: Maybe<T>, transform: (value: T) => (Maybe<U> | U)): Maybe<U> {
   if (instance instanceof Just) {
-    return transform(instance.value)
+    const transformed = transform(instance.value)
+    if (transformed instanceof Just || transformed instanceof Nothing) {
+      return transformed
+    }
+    return maybe(transformed)
   }
   return instance
 }
@@ -36,5 +48,8 @@ export const nothing = <T>(): Maybe<T> =>
 
 export const unit = <T>(value: T): Maybe<T> =>
   value == null ? nothing() : just(value)
+
+export const js = <T>(m: Maybe<T>): ?T =>
+  m instanceof Just ? m.value : null
 
 export const maybe = unit

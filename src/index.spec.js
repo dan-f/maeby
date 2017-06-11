@@ -42,24 +42,6 @@ describe('maybe', () => {
   })
 })
 
-describe('OOP interface', () => {
-  test('Just has a .bind() method', () => {
-    expect(
-      just(10).bind(timesThree)
-    ).toEqual(
-      bind(just(10), timesThree)
-    )
-  })
-
-  test('Nothing has a .bind() method', () => {
-    expect(
-      nothing().bind(timesThree)
-    ).toEqual(
-      bind(nothing(), timesThree)
-    )
-  })
-})
-
 describe('monadic laws', () => {
   test('bind(unit(x), f) ≡ f(x)', () => {
     const f = timesThree
@@ -95,6 +77,48 @@ describe('monadic laws', () => {
       bind(bind(nothing(), f), g)
     ).toEqual(
       bind(nothing(), x => bind(f(x), g))
+    )
+  })
+})
+
+describe('OOP interface', () => {
+  test('Just has a .bind() method', () => {
+    expect(
+      just(10).bind(timesThree)
+    ).toEqual(
+      bind(just(10), timesThree)
+    )
+  })
+
+  test('Nothing has a .bind() method', () => {
+    expect(
+      nothing().bind(timesThree)
+    ).toEqual(
+      bind(nothing(), timesThree)
+    )
+  })
+})
+
+describe('JS interop', () => {
+  it('can translate Just back into an unwrapped value', () => {
+    expect(just('cool').js()).toBe('cool')
+  })
+
+  it('can translate Nothing back to null', () => {
+    expect(nothing().js()).toBe(null)
+  })
+})
+
+describe('convenience', () => {
+  it('can omit wrapping return values in a maybe in the bind functions', () => {
+    expect(
+      just('have a nice day')
+        .bind(friendlyGreeting => friendlyGreeting.split(' '))
+        .bind(words => words.map(word => word.toUpperCase()))
+        .bind(words => words.slice().sort())
+        .js()
+    ).toEqual(
+      [ 'A', 'DAY', 'HAVE', 'NICE' ]
     )
   })
 })
