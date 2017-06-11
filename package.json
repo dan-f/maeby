@@ -1,0 +1,25 @@
+{
+  "name": "mb",
+  "version": "0.1.0",
+  "description": "The maybe monad in JS",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "babel src -d lib",
+    "pretest": "flow",
+    "test": "jest --coverage",
+    "test:dev": "yarn test -- --watch"
+  },
+  "author": "Daniel Friedman <dfriedman58@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.47.0",
+    "jest": "^20.0.4"
+  }
+}
