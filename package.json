@@ -10,7 +10,9 @@
     "build": "babel src -d lib",
     "pretest": "flow",
     "test": "jest --coverage",
-    "test:dev": "yarn test -- --watch"
+    "test:dev": "npm test -- --watch",
+    "coverage:report": "cat ./coverage/lcov.info | coveralls",
+    "prepublish": "npm run build"
   },
   "author": "Daniel Friedman <dfriedman58@gmail.com>",
   "license": "MIT",
@@ -21,5 +23,8 @@
     "babel-preset-flow": "^6.23.0",
     "flow-bin": "^0.47.0",
     "jest": "^20.0.4"
+  },
+  "dependencies": {
+    "coveralls": "^2.13.1"
   }
 }
