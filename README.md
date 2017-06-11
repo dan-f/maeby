@@ -1,9 +1,14 @@
 # maeby
+[![Build Status](https://travis-ci.org/dan-f/maeby.svg?branch=master)](https://travis-ci.org/dan-f/maeby)
+[![Coverage Status](https://coveralls.io/repos/github/dan-f/maeby/badge.svg?branch=master)](https://coveralls.io/github/dan-f/maeby?branch=master)
+
 the maybe monad - *in JS* - with some adornments
 
 ## about
 
-This is mostly just a fun project to learn more about monads.  The exposed interface tries to stick closely to a textbook monad interface, but adds a bit of convenience to accommodate the syntax and semantics of JS.
+This is mostly just a fun project to learn more about monads.  The exposed
+interface tries to stick closely to a textbook monad interface, but adds a bit
+of convenience to accommodate the syntax and semantics of JS.
 
 ## installation
 
