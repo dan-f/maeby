@@ -7,12 +7,12 @@
     "lib"
   ],
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "babel --ignore='**.spec.js' src -d lib",
     "pretest": "flow",
     "test": "jest --coverage",
     "test:dev": "npm test -- --watch",
     "coverage:report": "cat ./coverage/lcov.info | coveralls",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "author": "Daniel Friedman <dfriedman58@gmail.com>",
   "license": "MIT",
