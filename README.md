@@ -30,7 +30,7 @@ maybe(flakyCaps('hey'))
   .bind(curtGreeting => `${curtGreeting}! how's it goin?`)
   // ^ equivalent to:
   // .bind(curtGreeting => just(`${curtGreeting}! how's it goin?`))
-  .js()
+  .unwrap()
   // ^ convert back to the plain unwrapped JS value
 ```
 

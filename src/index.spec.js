@@ -101,11 +101,11 @@ describe('OOP interface', () => {
 
 describe('JS interop', () => {
   it('can translate Just back into an unwrapped value', () => {
-    expect(just('cool').js()).toBe('cool')
+    expect(just('cool').unwrap()).toBe('cool')
   })
 
   it('can translate Nothing back to null', () => {
-    expect(nothing().js()).toBe(null)
+    expect(nothing().unwrap()).toBe(null)
   })
 })
 
@@ -116,7 +116,7 @@ describe('convenience', () => {
         .bind(friendlyGreeting => friendlyGreeting.split(' '))
         .bind(words => words.map(word => word.toUpperCase()))
         .bind(words => words.slice().sort())
-        .js()
+        .unwrap()
     ).toEqual(
       [ 'A', 'DAY', 'HAVE', 'NICE' ]
     )
