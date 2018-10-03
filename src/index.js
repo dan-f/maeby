@@ -14,8 +14,8 @@ export class Just<T> {
     return bind(this, transform)
   }
 
-  js (): ?T {
-    return js(this)
+  unwrap (): ?T {
+    return unwrap(this)
   }
 }
 
@@ -24,8 +24,8 @@ export class Nothing {
     return bind(this, transform)
   }
 
-  js (): any {
-    return js(this)
+  unwrap (): any {
+    return unwrap(this)
   }
 }
 
@@ -49,7 +49,7 @@ export const nothing = <T>(): Maybe<T> =>
 export const unit = <T>(value: T): Maybe<T> =>
   value == null ? nothing() : just(value)
 
-export const js = <T>(m: Maybe<T>): ?T =>
+export const unwrap = <T>(m: Maybe<T>): ?T =>
   m instanceof Just ? m.value : null
 
 export const maybe = unit
