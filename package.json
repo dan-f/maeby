@@ -12,6 +12,8 @@
     "test": "jest --coverage",
     "test:dev": "npm test -- --watch",
     "coverage:report": "cat ./coverage/lcov.info | coveralls",
+    "preversion": "npm test",
+    "postversion": "git push --follow-tags",
     "prepublishOnly": "npm run build"
   },
   "author": "Daniel Friedman <dfriedman58@gmail.com>",
